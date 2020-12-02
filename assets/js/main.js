@@ -15,6 +15,22 @@ const cfg = [{
 		"type": "fetch",
 		"url": "assets/input/day1.input"
 	}]
+}, {
+	"label": "Day 2 - Part 1",
+	"key": "d2p1",
+	"link": "https://adventofcode.com/2020/day/2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day2.input"
+	}]
+}, {
+	"label": "Day 2 - Part 2",
+	"key": "d2p2",
+	"link": "https://adventofcode.com/2020/day/2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day2.input"
+	}]
 }];
 
 const init = (runCb) => {

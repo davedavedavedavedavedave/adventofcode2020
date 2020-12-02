@@ -1,0 +1,35 @@
+html {
+	height: 100%;
+	margin: 0;
+}
+body {
+	background: #333;
+	margin: 0;
+	height: 100%;
+}
+a {
+	color: lightblue;
+}
+.linkList {
+	list-style-type: none;
+	box-sizing: border-box;
+	float: left;
+	margin: 0;
+	padding: 20px;
+	height: 100%;
+	width: 230px;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, .4);
+	box-shadow: 2px 0px 5px rgba(0, 0, 0, .4);
+}
+.payload {
+	margin: 0;
+	padding: 20px;
+}
+.payload > li {
+	display: none;
+}
+.payload > li:target {
+	display: block;
+}
+.linkList

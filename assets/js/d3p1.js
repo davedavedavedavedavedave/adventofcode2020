@@ -12,7 +12,7 @@ function sledCollisions(slope, vector, position) {
 	const slopeSegmentWidth = slope[0].length;
 	let collisions = 0;
 
-	while (position.y + 1 < slope.length) {
+	while (position.y + vector.y < slope.length) {
 		// since slope repeats in x-direction, getting new x-position is a little more involved
 		position.x += vector.x % slopeSegmentWidth;
 		if (position.x < 0) {

@@ -2,16 +2,26 @@ const init = (runCb) => {
 	const scripts = document.getElementsByTagName('script');
 	const myCfg = cfg[scripts[scripts.length - 1].dataset.index];
 	const payload = document.querySelector('.payload');
+
+	// List item for task (each task has its own li element)
 	const payloadItem = document.createElement('li');
 	payloadItem.id = myCfg.key;
+
+	// Head element with Header and Links to Task and Code
 	const payloadHead = document.createElement('div');
 	payloadHead.className = 'head';
-	payloadHead.innerHTML = '<h1>' + myCfg.label + '</h1>';
+	payloadHead.innerHTML = '<h1>' + myCfg.label + '</h1><p><a href="' + myCfg.taskURL + '">Task Description.</a><br><a href="https://github.com/davedavedavedavedavedave/adventofcode2020/blob/master/assets/js/' + myCfg.key + '.js">Source Code for this Task.</a></p>';
+
+	// Task Inputs
 	const inputs = [];
 	for (let i = 0; i < (myCfg.inputs || []).length; i++) {
+		let label = document.createElement('label');
+		label.innerHTML = 'Task Input:';
+		label.appendChild(document.createElement('br'));
 		let textarea = document.createElement('textarea');
 		textarea.name = myCfg.key + '-' + i;
-		payloadHead.appendChild(textarea);
+		label.appendChild(textarea);
+		payloadHead.appendChild(label);
 		switch (myCfg.inputs[i].type) {
 			case 'fetch':
 				fetch(myCfg.inputs[i].url).then(resp => resp.text()).then(txt => textarea.value = txt);
@@ -19,13 +29,18 @@ const init = (runCb) => {
 		}
 		inputs.push(textarea);
 	}
+
+	// Task Run Button. Triggers code execution.
 	const runBtn = document.createElement('button');
+	runBtn.className = 'Run';
 	runBtn.innerHTML = 'Run';
 	runBtn.addEventListener('click', e => {
-		payloadBody.innerHTML = '';
+		payloadBody.innerHTML = '<hr>';
 		runCb.apply(runCb, inputs.map(input => input.value).concat([result => payloadBody.appendChild(result)]));
 	});
 	payloadHead.appendChild(runBtn);
+
+	// Task Body, will contain content returned from callback
 	const payloadBody = document.createElement('div');
 	payloadBody.className = 'body';
 

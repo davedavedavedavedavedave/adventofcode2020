@@ -17,6 +17,14 @@ textarea, input {
 	color: #eee;
 	padding: 4px 8px;
 }
+textarea {
+	width: 400px;
+	height: 180px;
+	max-width: calc(100% - 40px);
+}
+button.Run {
+	display: block;
+}
 h1 {
 	margin: 0 0 20px;
 }
@@ -33,11 +41,13 @@ h1 {
 	box-shadow: 2px 0px 5px rgba(0, 0, 0, .4);
 }
 .payload {
+	padding: 0;
 	margin: 0;
-	padding: 20px;
-	overflow: hidden;
+	overflow: auto;
+	max-height: 100%;
 }
 .payload > li {
+	padding: 20px;
 	display: none;
 }
 .payload > li:target {

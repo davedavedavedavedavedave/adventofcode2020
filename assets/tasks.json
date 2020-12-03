@@ -1,0 +1,49 @@
+[{
+	"label": "Day 1 - Part 1",
+	"key": "d1p1",
+	"link": "https://adventofcode.com/2020/day/1",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day1.input"
+	}]
+}, {
+	"label": "Day 1 - Part 2",
+	"key": "d1p2",
+	"link": "https://adventofcode.com/2020/day/1",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day1.input"
+	}]
+}, {
+	"label": "Day 2 - Part 1",
+	"key": "d2p1",
+	"link": "https://adventofcode.com/2020/day/2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day2.input"
+	}]
+}, {
+	"label": "Day 2 - Part 2",
+	"key": "d2p2",
+	"link": "https://adventofcode.com/2020/day/2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day2.input"
+	}]
+}, {
+	"label": "Day 3 - Part 1",
+	"key": "d3p1",
+	"link": "https://adventofcode.com/2020/day/3",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day3.input"
+	}]
+}, {
+	"label": "Day 3 - Part 2",
+	"key": "d3p2",
+	"link": "https://adventofcode.com/2020/day/3",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day3.input"
+	}]
+}]

@@ -3,7 +3,7 @@ init((input, cb) => {
 	const result = getNumbersWhichAddUpToX(parsedInput, 2020, 3);
 	
 	const resultEl = document.createElement('p');
-	resultEl.innerHTML = 'Result: ' + result.reduce((a, b) => a*b, 1);
+	resultEl.innerHTML = 'Result ' + result.join(' * ') + ': ' + result.reduce((a, b) => a*b, 1);
 	cb(resultEl);
 	return;
 });

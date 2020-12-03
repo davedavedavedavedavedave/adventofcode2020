@@ -1,38 +1,3 @@
-// read config of available tasks
-const cfg = [{
-	"label": "Day 1 - Part 1",
-	"key": "d1p1",
-	"link": "https://adventofcode.com/2020/day/1",
-	"inputs": [{
-		"type": "fetch",
-		"url": "assets/input/day1.input"
-	}]
-}, {
-	"label": "Day 1 - Part 2",
-	"key": "d1p2",
-	"link": "https://adventofcode.com/2020/day/1",
-	"inputs": [{
-		"type": "fetch",
-		"url": "assets/input/day1.input"
-	}]
-}, {
-	"label": "Day 2 - Part 1",
-	"key": "d2p1",
-	"link": "https://adventofcode.com/2020/day/2",
-	"inputs": [{
-		"type": "fetch",
-		"url": "assets/input/day2.input"
-	}]
-}, {
-	"label": "Day 2 - Part 2",
-	"key": "d2p2",
-	"link": "https://adventofcode.com/2020/day/2",
-	"inputs": [{
-		"type": "fetch",
-		"url": "assets/input/day2.input"
-	}]
-}];
-
 const init = (runCb) => {
 	const scripts = document.getElementsByTagName('script');
 	const myCfg = cfg[scripts[scripts.length - 1].dataset.index];
@@ -69,6 +34,8 @@ const init = (runCb) => {
 	payload.appendChild(payloadItem);
 }
 
+let cfg = [];
+
 (function () {
 	// create navigation and content nodes
 	const linkList = document.createElement('ol');
@@ -78,18 +45,25 @@ const init = (runCb) => {
 	const payload = document.createElement('ol');
 	payload.className = 'payload';
 	document.body.appendChild(payload);
-	
-	// have to make sure to add scripts sequentially to be able to get "key" within the script.
-	const add = (i) => {
-		linkList.innerHTML += '<li><a href="#' + cfg[i].key + '">' + cfg[i].label + '</a></li>';
-		let script = document.createElement('script');
-		script.src = 'assets/js/' + cfg[i].key + '.js';
-		script.dataset.index = i;
-		if (i + 1 < cfg.length) {
-			script.addEventListener('load', () => { add(i + 1) });
+
+	// read config of available tasks
+	fetch('assets/tasks.json').then(resp => resp.json()).then(loadedCfg => {
+		cfg = loadedCfg;
+		// have to make sure to add scripts sequentially to be able to get "key" within the script.
+		const add = (i) => {
+			linkList.innerHTML += '<li><a href="#' + cfg[i].key + '">' + cfg[i].label + '</a></li>';
+			let script = document.createElement('script');
+			script.src = 'assets/js/' + cfg[i].key + '.js';
+			script.dataset.index = i;
+			if (i + 1 < cfg.length) {
+				script.addEventListener('load', () => { add(i + 1) });
+			} else {
+				// for whatever reason my firefox didn't show the :target element, unless I specifically set the location hash again ...
+				script.addEventListener('load', () => { location.hash = location.hash });
+			}
+			document.body.appendChild(script);
 		}
-		document.body.appendChild(script);
-	}
-	add(0);
+		add(0);
+	})
 })();
 

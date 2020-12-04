@@ -18,7 +18,7 @@ init((input, cb) => {
 			}
 			return false;
 		},
-		'hcl': val => val.match(/^#[0-9a-z]{6}$/) != null, // a # followed by exactly six characters 0-9 or a-f.
+		'hcl': val => val.match(/^#[0-9a-f]{6}$/) != null, // a # followed by exactly six characters 0-9 or a-f.
 		'ecl': val => ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'].indexOf(val) > -1, // exactly one of: amb blu brn gry grn hzl oth.
 		'pid': val => val.match(/^\d{9}$/) != null, // a nine-digit number, including leading zeroes.
 		'cid': val => true // ignored, missing or not.

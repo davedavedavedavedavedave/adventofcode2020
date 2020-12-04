@@ -11,7 +11,7 @@ init((input, cb) => {
 	return;
 });
 
-function validatePassport(passportFields, requiredFields, optionalFields) {
+function validatePassport(passportFields, requiredFields, optionalFields, validators) {
 	const myRequiredFields = requiredFields.slice(0);
 	const myOptionalFields = optionalFields.slice(0);
 
@@ -23,6 +23,9 @@ function validatePassport(passportFields, requiredFields, optionalFields) {
 			myOptionalFields.splice(myOptionalFields.indexOf(key), 1);
 		} else {
 			return false; // invalid field
+		}
+		if (validators && validators[key] && !validators[key](passportFields[i][1])) {
+			return false; // validation failed
 		}
 	}
 	return myRequiredFields.length === 0; // all mandatory fields are there

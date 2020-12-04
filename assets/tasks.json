@@ -54,4 +54,12 @@
 		"type": "fetch",
 		"url": "assets/input/day4.input"
 	}]
+}, {
+	"label": "Day 4 - Part 2",
+	"key": "d4p2",
+	"taskURL": "https://adventofcode.com/2020/day/4",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day4.input"
+	}]
 }]

@@ -1,8 +1,8 @@
 init((input, cb) => {
-  const parsedInput = input.trim().split('\n').map(code => seatCodeToNumbers(code));
+  const parsedInput = input.trim().split('\n').map(seatCodeToNumbers).sort((a, b) => a.id - b.id);
 
   const resultEl = document.createElement('p');
-  resultEl.innerHTML = 'Result: ' + parsedInput.sort((a, b) => b.id - a.id)[0].id;
+  resultEl.innerHTML = 'Result: ' + parsedInput[parsedInput.length - 1].id;
   cb(resultEl);
   return;
 });

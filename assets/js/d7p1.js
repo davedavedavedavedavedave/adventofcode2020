@@ -36,7 +36,6 @@ function parseBagInput(input) {
 	while (!accumulatingDone) {
 		accumulatingDone = true;
 		for (let i = 0; i < parsedInput.length; i++) {
-			console.log(1);
 			// IF not already accumulated
 			// AND all children have accumulated quantity set
 			if (!parsedInput[i].accumulatedQty && parsedInput[i].children.findIndex(child => child.bag.accumulatedQty == null) < 0) {

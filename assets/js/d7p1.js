@@ -6,12 +6,12 @@ init((input, cb) => {
 			const matches = bag.match(/^(\d+) (.+)$/);
 			return {
 				qty: matches[1],
-				bagName: matches[2],
+				name: matches[2],
 				bag: matches[2]
 			}
 		});
 		return {
-			bagName: row[0],
+			name: row[0],
 			bag: bags[row[0]]
 		};
 	});
@@ -23,16 +23,25 @@ init((input, cb) => {
 	}
 
 	const resultEl = document.createElement('p');
-	resultEl.innerHTML = 'Result: ' + (whichBagsContainBag(parsedInput, 'shiny gold').length - 1);
+	resultEl.innerHTML = 'Result: ' + (whichBagsContainBag(parsedInput, bags['shiny gold']).length - 1);
 	cb(resultEl);
 	return;
 });
 
-function whichBagsContainBag(bags, bagName) {
-	const matchingBags = [];
-	for (let i = 0; i < bags.length; i++) {
-		if (bags[i].bagName == bagName || whichBagsContainBag(bags[i].bag, bagName).length > 0) {
-			matchingBags.push(bags[i])
+function whichBagsContainBag(bags, bag) {
+	const matchingBags = [bag];
+	let matchingBagsCount = 0;
+	// while new bags are added to the list of matching bags
+	while (matchingBags.length > matchingBagsCount) {
+		matchingBagsCount = matchingBags.length;
+		for (let i = 0; i < bags.length; i++) {
+			console.log(1);
+			// IF bag isn't already in list of matched bags
+			// AND it contains any of the already matched bags
+			if (matchingBags.indexOf(bags[i]) < 0 && bags[i].bag.findIndex(bag => matchingBags.indexOf(bag) > -1) > -1) {
+				// add it to the list of matched bags
+				matchingBags.push(bags[i]);
+			}
 		}
 	}
 	return matchingBags;

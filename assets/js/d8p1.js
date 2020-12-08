@@ -26,6 +26,11 @@ LogicMachine.prototype.run = function() {
 		}
 		this.cursorHistory.push(this.cursor);
 
+		// cursor out of bounds
+		if (this.cursor < 0 || this.cursor >= this.instructions.length) {
+			return;
+		}
+
 		// do stuff
 		this.executeStep();
 	}

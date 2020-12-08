@@ -118,4 +118,12 @@
 		"type": "fetch",
 		"url": "assets/input/day8.input"
 	}]
+}, {
+	"label": "Day 8 - Part 2",
+	"key": "d8p2",
+	"taskURL": "https://adventofcode.com/2020/day/8",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day8.input"
+	}]
 }]

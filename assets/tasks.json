@@ -134,4 +134,12 @@
 		"type": "fetch",
 		"url": "assets/input/day9.input"
 	}]
+}, {
+	"label": "Day 9 - Part 2",
+	"key": "d9p2",
+	"taskURL": "https://adventofcode.com/2020/day/9#part2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day9.input"
+	}]
 }]

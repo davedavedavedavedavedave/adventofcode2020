@@ -16,10 +16,8 @@ function getNumbersWhichAddUpToX(listOfNumbers, targetSum, numberOfNumbers) {
 			if (result) {
 				return result.concat(number);
 			}
-		} else {
-			if (number === targetSum) {
-				return [number];
-			}
+		} else if (number == targetSum) {
+			return [number];
 		}
 	}
 	return null;

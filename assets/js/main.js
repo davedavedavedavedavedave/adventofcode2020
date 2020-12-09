@@ -36,9 +36,19 @@ const init = (runCb) => {
 	runBtn.innerHTML = 'Run';
 	runBtn.addEventListener('click', e => {
 		payloadBody.innerHTML = '<hr>';
-		runCb.apply(runCb, inputs.map(input => input.value).concat([result => payloadBody.appendChild(result)]));
+		const startTime = Date.now();
+		runCb.apply(runCb, inputs.map(input => input.value).concat([result => {
+			const endTime = Date.now();
+			runtime.dataset.time = endTime - startTime;
+			payloadBody.appendChild(result);
+		}]));
 	});
 	payloadHead.appendChild(runBtn);
+
+	// show runtime
+	const runtime = document.createElement('span');
+	runtime.className = 'runtime';
+	payloadHead.appendChild(runtime);
 
 	// Task Body, will contain content returned from callback
 	const payloadBody = document.createElement('div');

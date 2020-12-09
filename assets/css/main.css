@@ -22,7 +22,7 @@ textarea {
 	height: 180px;
 	max-width: calc(100% - 40px);
 }
-button.Run {
+.head label {
 	display: block;
 }
 h1 {
@@ -53,4 +53,6 @@ h1 {
 .payload > li:target {
 	display: block;
 }
-.linkList
+.runtime[data-time]::before {
+	content: " (" attr(data-time) " ms)";
+}

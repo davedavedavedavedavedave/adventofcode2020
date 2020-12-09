@@ -29,7 +29,7 @@ init((input, cb) => {
 	numbers = numbers.sort();
 
 	const resultEl = document.createElement('p');
-	resultEl.innerHTML = 'Result: ' + (numbers[0] + numbers[numbers.length - 1]);
+	resultEl.innerHTML = 'Result (' + numbers[0] + ' + ' + numbers[numbers.length - 1] + '): ' + (numbers[0] + numbers[numbers.length - 1]);
 	cb(resultEl);
 	return;
 });

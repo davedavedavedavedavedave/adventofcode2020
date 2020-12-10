@@ -2,7 +2,7 @@ init((input, cb) => {
 	const parsedInput = [0].concat(input.trim().split('\n').map(val => val*1).sort((a, b) => a - b));
 	parsedInput.push(parsedInput[parsedInput.length - 1] + 3);
 
-	const joltArrangements = parsedInput.slice(0).map(val => {
+	const joltArrangements = parsedInput.map(val => {
 		return {
 			value: val,
 			accumulatedChildArrangements: 1

@@ -182,4 +182,12 @@
 		"type": "fetch",
 		"url": "assets/input/day12.input"
 	}]
+}, {
+	"label": "Day 12 - Part 2",
+	"key": "d12p2",
+	"taskURL": "https://adventofcode.com/2020/day/12#part2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day12.input"
+	}]
 }]

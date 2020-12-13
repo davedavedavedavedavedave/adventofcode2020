@@ -7,29 +7,26 @@ init((input, cb) => {
   });
 
   const coordinates = [0, 0];
-  let moveVector = [1, 0];
+  let moveVector = [10, 1];
 
   for (let i = 0; i < parsedInput.length; i++) {
-    let myVector;
-
     switch (parsedInput[i].action) {
       case 'N':
-        myVector = [ 0, 1 ];
+        moveVector[1] += parsedInput[i].value;
         break;
       case 'S':
-        myVector = [ 0, -1 ];
+        moveVector[1] -= parsedInput[i].value;
         break;
       case 'E':
-        myVector = [ 1, 0 ];
+        moveVector[0] += parsedInput[i].value;
         break;
       case 'W':
-        myVector = [ -1, 0 ];
+        moveVector[0] -= parsedInput[i].value;
         break;
       case 'R':
         parsedInput[i].value = -parsedInput[i].value;
         // fall through case!
       case 'L':
-        myVector = [ 0, 0 ];
         let turnAngleRadians = parsedInput[i].value * (Math.PI/180);
         moveVector = [
           (Math.cos(turnAngleRadians) * moveVector[0] - Math.sin(turnAngleRadians) * moveVector[1]).toFixed() * 1,
@@ -37,12 +34,10 @@ init((input, cb) => {
         ];
         break;
       case 'F':
-        myVector = moveVector;
+        coordinates[0] += moveVector[0] * parsedInput[i].value;
+        coordinates[1] += moveVector[1] * parsedInput[i].value;
         break;
     }
-
-    coordinates[0] += myVector[0] * parsedInput[i].value;
-    coordinates[1] += myVector[1] * parsedInput[i].value;
   }
 
   const resultEl = document.createElement('p');

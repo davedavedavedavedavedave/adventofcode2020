@@ -6,20 +6,23 @@ init((input, cb) => {
       id: +val,
       offset: idx % val
     }
-  }).filter(val => !isNaN(val.id)).sort((a, b) => b.id - a.id);
+  }).filter(val => !isNaN(val.id));
 
-  let increment = busses[0].id;
-  let counter = busses[0].id - busses[0].offset - increment;
+  let currentItem = 0;
+  let increment = busses[currentItem].id;
+  let counter = busses[currentItem].id - busses[currentItem].offset - increment;
   let allOffsetsMatch = false;
 
   while (!allOffsetsMatch) {
     allOffsetsMatch = true;
     counter += increment;
-    for (let i = 0; i < busses.length; i++) {
+    for (let i = currentItem + 1; i < busses.length; i++) {
       if (counter % busses[i].id != (busses[i].id - busses[i].offset) % busses[i].id) {
-          allOffsetsMatch = false;
-          break;
+        allOffsetsMatch = false;
+        break;
       }
+      increment *= busses[i].id;
+      currentItem += 1;
     }
   }
 

@@ -230,4 +230,12 @@
 		"type": "fetch",
 		"url": "assets/input/day15.input"
 	}]
+}, {
+	"label": "Day 15 - Part 2",
+	"key": "d15p2",
+	"taskURL": "https://adventofcode.com/2020/day/15#part2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day15.input"
+	}]
 }]

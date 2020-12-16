@@ -214,4 +214,12 @@
 		"type": "fetch",
 		"url": "assets/input/day14.input"
 	}]
+}, {
+	"label": "Day 14 - Part 2",
+	"key": "d14p2",
+	"taskURL": "https://adventofcode.com/2020/day/14#part2",
+	"inputs": [{
+		"type": "fetch",
+		"url": "assets/input/day14.input"
+	}]
 }]

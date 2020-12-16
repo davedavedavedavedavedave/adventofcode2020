@@ -20,6 +20,7 @@ a {
 	height: 30px;
 	box-shadow: 0 0 10px 5px black;
 	transition: all .3s ease;
+	pointer-events: none;
 }
 .initialLoadingProgress.hidden {
 	opacity: 0;

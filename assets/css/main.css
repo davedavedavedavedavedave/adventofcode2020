@@ -11,6 +11,19 @@ body {
 a {
 	color: lightblue;
 }
+.initialLoadingProgress {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 60%;
+	height: 30px;
+	box-shadow: 0 0 10px 5px black;
+	transition: all .3s ease;
+}
+.initialLoadingProgress.hidden {
+	opacity: 0;
+}
 textarea, input {
 	background-color: rgba(255, 255, 255, .2);
 	border: 1px solid #eee;

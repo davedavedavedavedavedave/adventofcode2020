@@ -71,6 +71,12 @@ let cfg = [];
 	payload.className = 'payload';
 	document.body.appendChild(payload);
 
+	const progress = document.createElement('progress');
+	progress.max = 100;
+	progress.value = 0;
+	progress.className = 'initialLoadingProgress';
+	document.body.appendChild(progress);
+
 	// read config of available tasks
 	fetch('assets/tasks.json').then(resp => resp.json()).then(loadedCfg => {
 		cfg = loadedCfg;
@@ -81,10 +87,17 @@ let cfg = [];
 			script.src = 'assets/js/' + cfg[i].key + '.js';
 			script.dataset.index = i;
 			if (i + 1 < cfg.length) {
-				script.addEventListener('load', () => { add(i + 1) });
+				script.addEventListener('load', () => {
+					add(i + 1);
+					progress.value = Math.ceil(100 / cfg.length * (i + 1));
+				});
 			} else {
 				// for whatever reason my firefox didn't show the :target element, unless I specifically set the location hash again ...
-				script.addEventListener('load', () => { location.hash = location.hash });
+				script.addEventListener('load', () => {
+					location.hash = location.hash;
+					progress.value = Math.ceil(100 / cfg.length * (i + 1));
+					progress.className += ' hidden';
+				});
 			}
 			document.body.appendChild(script);
 		}

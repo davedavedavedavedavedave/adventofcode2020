@@ -29,7 +29,7 @@ TicketValidator.prototype.validate = function(ticket) {
   let invalidValues = [];
   for (let i = 0; i < ticket.fieldValues.length; i++) {
     const value = ticket.fieldValues[i];
-    let matchingValidator;
+    let matchingValidators = [];
 
     for (let j = 0; j < this.validatorCfgs.length; j++) {
       const validator = this.validatorCfgs[j];
@@ -45,12 +45,11 @@ TicketValidator.prototype.validate = function(ticket) {
       }
 
       if (matchingRule) {
-        matchingValidator = validator;
-        break;
+        matchingValidators.push(validator);
       }
     }
 
-    if (!matchingValidator) {
+    if (matchingValidators.length == 0) {
       invalidValues.push(value);
     }
   }

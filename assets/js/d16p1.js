@@ -13,7 +13,7 @@ init((input, cb) => {
   let invalidValues = [];
   for (let i = 0; i < nearbyTickets.length; i++) {
     let ticket = new Ticket(nearbyTickets[i]);
-    invalidValues = invalidValues.concat(validator.validate(ticket));
+    invalidValues = invalidValues.concat(validator.validate(ticket).filter(val => !val.valid).map(val => val.value));
   }
 
   const resultEl = document.createElement('p');
@@ -26,7 +26,7 @@ function TicketValidator(validatorCfgs) {
   this.validatorCfgs = validatorCfgs;
 }
 TicketValidator.prototype.validate = function(ticket) {
-  let invalidValues = [];
+  let retVal = [];
   for (let i = 0; i < ticket.fieldValues.length; i++) {
     const value = ticket.fieldValues[i];
     let matchingValidators = [];
@@ -50,10 +50,13 @@ TicketValidator.prototype.validate = function(ticket) {
     }
 
     if (matchingValidators.length == 0) {
-      invalidValues.push(value);
+      retVal.push({ valid: false, value: value });
+    } else {
+      retVal.push({ valid: true, matchingValidators: matchingValidators });      
     }
   }
-  return invalidValues;
+
+  return retVal;
 }
 function Ticket(values) {
   this.fieldValues = values;
